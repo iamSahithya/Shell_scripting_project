@@ -1,0 +1,10 @@
+sending incremental file list
+created directory /home/ubuntu/Backup-03-02-2025
+cd+++++++++ mws4/
+<f+++++++++ mws4/Characters.xlsx
+<f+++++++++ mws4/abc.txt
+<f+++++++++ mws4/afg.txt
+<f+++++++++ mws4/file.sh
+
+sent 5,284 bytes  received 149 bytes  1,207.33 bytes/sec
+total size is 4,925  speedup is 0.91
