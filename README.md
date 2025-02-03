@@ -41,5 +41,35 @@ Step 4: Understand backup logs concept on how to take all the errors into logs.<
 
        o      support for anonymous or authenticated rsync daemons (ideal for mirroring)
 6)  <b> Note that rsync must be installed on both the source and destination machines. </b>
+7)  An rsync daemon allows you to set up a server that listens for incoming rsync requests and handles file transfers directly. via TCP
+Example:
+```sh
+rsync -avz file1.txt user@remote_host:/home/user/backup/
+```
+hear to transfer file1.txt from local machine to remote_host remote directory /home/user/backup<br>
+```sh
+rsync -avz /home/user/data/ user@remote_host:/home/user/backup/
+```
+To sync a local directory (/home/user/data/) with a remote directory (/home/user/backup/), The trailing / on data/ means the contents of data will be copied to the backup directory, not the data directory itself.<br>
+```sh
+rsync -avz -e "ssh -p 2222" /home/user/data/ user@remote_host:/home/user/backup/
+```
+If the remote server is running rsync over a specific port (other than the default SSH port 22), you can specify the port with the -e option.<br>
 
+<b>Exit Codes: </b><br>
+In shell scripting, exit codes (also called exit status or return codes) are used to indicate whether a command or script has completed successfully or if an error occurred. An exit code is a numeric value returned by a command when it finishes executing.<br>
+
+Basic Concept:<br>
+1. Exit Code 0: Indicates success. The command or script completed successfully without any issues.<br>
+2. Exit Code Non-zero (1-255): Indicates failure. The command or script encountered an error. Different non-zero values can represent different types of errors, depending on the program or script.<br>
+3. After running a command in a shell script, you can check its exit code using the special variable $?
+4. set -e: Automatically exits the script when any command fails (non-zero exit code).
+
+To redirect the errors/failures we can use 2>&1 which is to redirect output in case of stdout and stderr
+Redirect both stdout and stderr to the same file:
+```sh
+command > all_output.txt 2>&1
+```
+1. <b> > all_output.txt:</b> Redirects stdout to all_output.txt.
+2. <b>2>&1:</b> Redirects stderr (<i>file descriptor 2</i>) to stdout (<i>file descriptor 1</i>), so both streams go to all_output.txt.
 
