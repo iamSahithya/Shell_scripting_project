@@ -1,24 +1,23 @@
 # Shell_scripting_project
 Shell Scripting Project<br>
 
-This Project idea was taken from chatgpt and implemented on my own.<br>
 
 Backup Script:<br>
 Objective: Create a script that automates the process of backing up files or directories to a remote server or a local backup folder.<br>
 Skills Used: File handling, conditional logic, rsync, scheduling (via cron), and logging.<br>
 Features:<br>
-1. Backup files to a remote server using rsync or SCP.<br>
-2. Check if backup has completed successfully (via exit codes).<br>
+1. Backup files to a remote server.<br>
+2. Check if backup has completed successfully.<br>
 3. Automate backups using cron jobs.<br>
 4. Keep backup logs and notifications in case of failure.<br>
 
 So to approach this<br>
-Step 1: Firstly from the Features understand what is rsync or SCP. how does they work with examples.<br>
+Step 1: Firstly from the Features understand what is rsync. how does they work with examples.<br>
 Step 2: Understand cronjobs concept clearly and how they can be used to backup<br>
 Step 3: Understand exit codes<br>
 Step 4: Understand backup logs concept on how to take all the errors into logs.<br>
 
-<b>Step-1: rsync or SCP </b><br>
+<b><i>Step-1: rsync or SCP </i></b><br>
 1) rsync or remote synchronization is a software utility for Unix-Like systems that efficiently sync files and directories between two hosts or machines.<br>
 2) One is the source or the local-host from which the files will be synced, the other is the remote-host, on which synchronization will take place.<br>
 3) There are basically two ways in which rsync can copy/sync data:<br>
@@ -56,7 +55,7 @@ rsync -avz -e "ssh -p 2222" /home/user/data/ user@remote_host:/home/user/backup/
 ```
 If the remote server is running rsync over a specific port (other than the default SSH port 22), you can specify the port with the -e option.<br>
 
-<b>Exit Codes: </b><br>
+<b><i>Exit Codes: </i></b><br>
 In shell scripting, exit codes (also called exit status or return codes) are used to indicate whether a command or script has completed successfully or if an error occurred. An exit code is a numeric value returned by a command when it finishes executing.<br>
 
 Basic Concept:<br>
@@ -65,6 +64,7 @@ Basic Concept:<br>
 3. After running a command in a shell script, you can check its exit code using the special variable $?
 4. set -e: Automatically exits the script when any command fails (non-zero exit code).
 
+<b><i>Redirect Error Messages using 2>&1:</i></b><br>
 To redirect the errors/failures we can use 2>&1 which is to redirect output in case of stdout and stderr
 Redirect both stdout and stderr to the same file:
 ```sh
@@ -73,3 +73,14 @@ command > all_output.txt 2>&1
 1. <b> > all_output.txt:</b> Redirects stdout to all_output.txt.
 2. <b>2>&1:</b> Redirects stderr (<i>file descriptor 2</i>) to stdout (<i>file descriptor 1</i>), so both streams go to all_output.txt.
 
+<b><i>Cronjob: </i></b><br>
+1. cron is like a helpful assistant that can automatically do tasks for you at specific times<br>
+2. Crontab refers to the command-line utility that allows users to create, edit, and manage their own cron schedules.<br>
+3. <b>crontab -e</b> to open the crontab editior.
+4. enter the cron job and click Ctrl+O to get the cron job name, click enter so the name gets saved and click Ctrl+X to exit the crontab editor.
+5. <b>crontab -l</b> to list all the cronjobs active
+6. <b>crontab -r</b> to remove all the cronjobs
+7. Cronjob command with example: * 12 * * * /bin/sh ~/your-file.sh
+       This will execute the your-file.sh at 12:00 everyday
+8. ![s2](https://github.com/user-attachments/assets/09f5ef58-9e97-43bd-9b6e-3f487d5625a8)
+   This is the syntax of crontab
