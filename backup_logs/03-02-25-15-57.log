@@ -1,0 +1,6 @@
+sending incremental file list
+.d..t...... ./
+<f.st...... abc.txt
+
+sent 237 bytes  received 44 bytes  62.44 bytes/sec
+total size is 4,939  speedup is 17.58

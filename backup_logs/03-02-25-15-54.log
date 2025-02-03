@@ -1,0 +1,9 @@
+sending incremental file list
+.d..t...... ./
+<f+++++++++ Characters.xlsx
+<f+++++++++ abc.txt
+<f+++++++++ afg.txt
+<f+++++++++ file.sh
+
+sent 5,268 bytes  received 95 bytes  975.09 bytes/sec
+total size is 4,925  speedup is 0.92
